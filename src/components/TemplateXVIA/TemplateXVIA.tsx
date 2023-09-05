@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Grid, Skeleton, useMediaQuery } from "@mui/material"
+import { Box, Skeleton, Typography, useMediaQuery } from "@mui/material"
 
 import * as S from './styles'
 import { CardSelectRegistration } from '../CardSelectRegistration/CardSelectRegistration'
@@ -17,6 +17,7 @@ export interface TemplateXVIAParams {
     onChange: (student: string) => void
     value: string
     isLoading: boolean
+    errorMessage?: string
 }
 
 export const TemplateXVIA: React.FC<TemplateXVIAParams> = ({
@@ -28,24 +29,14 @@ export const TemplateXVIA: React.FC<TemplateXVIAParams> = ({
     studens,
     onChange,
     value,
-    isLoading
+    isLoading,
+    errorMessage = ''
 }) => {
-    const [selectedStudent, setSelectedStudent] = React.useState('')
-
     const isMobile = useMediaQuery('(max-width:600px)')
-    const firstRenderValue = React.useRef(false)
 
-    const handleChangeStudent = React.useCallback((student: string) => {
-        setSelectedStudent(student)
+    const handleChangeStudent = (student: string) => {
         onChange(student)
-    }, [])
-
-    React.useEffect(() => {
-        if (!isResposable && !isLoading && !firstRenderValue.current && !selectedStudent) {
-            firstRenderValue.current = true
-            onChange(value)
-        }
-    }, [isResposable, isLoading, value])
+    }
 
     return (
         <S.Wrapper>
@@ -93,28 +84,35 @@ export const TemplateXVIA: React.FC<TemplateXVIAParams> = ({
                     </>
                 ) : (
                     <>
-                        <S.DescriptionSelectStudent>
-                            Selecione o aluno que deseja consultar a {moduleName}
-                        </S.DescriptionSelectStudent>
+                        {errorMessage ? (
+                            <Typography>{errorMessage}</Typography>
+                        ) : (
+                            <>
+                                <S.DescriptionSelectStudent>
+                                    Selecione o aluno que deseja consultar a {moduleName}
+                                </S.DescriptionSelectStudent>
 
-                        {isResposable && (
-                            <S.GridStudents isMobile={isMobile}>
-                                {studens.map((item) => (
-                                    <CardSelectRegistration
-                                        name={item.name}
-                                        checked={String(item.value) === selectedStudent}
-                                        onClick={() => handleChangeStudent(String(item.value))}
-                                    />
-                                ))}
-                            </S.GridStudents>
+                                {isResposable && (
+                                    <S.GridStudents isMobile={isMobile}>
+                                        {studens.map((item) => (
+                                            <CardSelectRegistration
+                                                name={item.name}
+                                                checked={String(item.value) === value}
+                                                onClick={() => handleChangeStudent(String(item.value))}
+                                            />
+                                        ))}
+                                    </S.GridStudents>
+                                )}
+
+
+                                <Box marginTop="20px">
+                                    {children}
+                                </Box>
+                            </>
                         )}
-
-
-                        <Box marginTop="20px">
-                            {children}
-                        </Box>
                     </>
                 )}
+
             </S.ContentSelectStudent>
         </S.Wrapper>
     )

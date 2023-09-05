@@ -13,6 +13,7 @@ export default {
 
 const Template: Story = () => (
     <TemplateXVIA
+        errorMessage='xxx'
         title="Consultar Frequência Escolar"
         description='Aqui você terá acesso às suas presenças e faltas referente ao ano letivo que você está matriculado. Para que você possa acompanhar o seu desempenho como aluno mês a mês.'
         moduleName='frequência escolar'

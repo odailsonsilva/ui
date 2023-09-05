@@ -44,13 +44,13 @@ export default [
         babelrc: false,
         presets: [
           [
-            "env",
+            "@babel/env",
             {
               modules: false,
             },
           ],
-          "stage-0",
-          "react",
+          "@babel/preset-stage-0",
+          "@babel/preset-react",
         ],
         exclude: [
           "node_modules/**",
@@ -64,24 +64,8 @@ export default [
     ],
   },
   {
-    input: "dist/esm/index.d.ts",
-    output: [
-      { file: "dist/index.d.ts", format: "esm" },
-      { sourcemap: true, file: "dist/@multiplica.js" },
-    ],
+    input: "src/index.ts",
+    output: [{ file: "dist/index.d.ts", format: "es" }],
     plugins: [dts()],
-    external: [
-      "react",
-      "react-dom",
-      "react-router",
-      "@mui/icons-material",
-      "@mui/material",
-      "@mui/styles",
-      "@mui/system",
-      "react-is",
-      "styled-components",
-      "@react-keycloak/web",
-      /\.css$/,
-    ],
   },
 ];

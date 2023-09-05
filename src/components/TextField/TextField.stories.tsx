@@ -9,6 +9,6 @@ export default {
     component: TextField,
 } as Meta;
 
-const Template: Story = () => <TextField label="Informe o número de inscrição" />;
+const Template: Story = () => <TextField label="Informe o número de inscrição" mask="cpf" />;
 
 export const Default = Template.bind({});

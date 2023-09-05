@@ -2,7 +2,9 @@ import { Box, Grid, Typography } from '@mui/material'
 import { styled } from '../../styles/styled'
 import { Colors } from '../../styles'
 
-export const Wrapper = styled(Box)(({ theme }) => ({}))
+export const Wrapper = styled(Box)(({ theme }) => ({
+    padding: 16
+}))
 
 export const Header = styled<any>(Box)(({ isMobile }) => ({
     borderBottom: !isMobile ? '1px solid rgba(115, 115, 115, 0.5)' : '',

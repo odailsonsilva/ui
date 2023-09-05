@@ -1,5 +1,5 @@
 {
-  "name": "@seduc-gov-ui/react",
+  "name": "seduc-xvia-ui",
   "version": "1.0.0",
   "description": "Lib",
   "author": "Odailson SIlva",
@@ -90,6 +90,7 @@
   "files": [
     "dist"
   ],
+  "private": false,
   "types": "dist/index.d.ts",
   "peerDependencies": {
     "@mui/icons-material": "^5.5.0",

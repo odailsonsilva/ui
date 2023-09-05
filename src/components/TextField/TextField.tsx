@@ -13,7 +13,6 @@ export const TextField = ({ mask, onChange, value, ...props }: TextFieldParms & 
     return (
         <TextFieldMUI
             size="small"
-            inputProps={{ maxLength: 12 }}
             fullWidth
             value={mask ? masks[mask].input(value) : value}
             onChange={(e) => {
